@@ -193,3 +193,19 @@ a { color: var(--accent); }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75rem; }
   .header { padding-top: 0; }
 }
+
+/* Outcome ----------------------------------------------------------- */
+.outcome {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+}
+.outcome-value {
+  font-weight: 700;
+  font-size: 1.12rem;
+  color: var(--accent);
+}
+.outcome-context {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+}

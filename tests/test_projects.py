@@ -9,7 +9,7 @@ SITE = pathlib.Path(__file__).resolve().parent.parent
 PROJECTS = json.loads((SITE / "data" / "projects.json").read_text(encoding="utf-8"))
 
 REQUIRED = {"id", "title", "track", "featured", "problem", "approach",
-            "constraint", "tags", "status", "repo", "competition"}
+            "constraint", "tags", "status", "repo", "competition", "outcome"}
 TRACKS = {"ml", "agents"}
 STATUSES = {"in-progress", "submitted", "completed"}
 
@@ -61,9 +61,16 @@ def test_featured_selection():
     assert len(agents) == 3, "three featured agent projects"
 
 
-def test_amia_links_to_its_published_repo():
+def test_amia_repo_link_is_correct_when_present():
+    """AMIA's repo is private while its competition runs, so the link is null.
+
+    If it is ever made public again the link must be the real URL, not a
+    guess - so assert the value rather than merely its absence.
+    """
     amia = next(p for p in PROJECTS if p["id"] == "amia-2026")
-    assert amia["repo"] == "https://github.com/Axentalan-VI/amia-public-challenge-2026"
+    assert amia["repo"] in (
+        None, "https://github.com/Axentalan-VI/amia-public-challenge-2026"
+    )
 
 
 def test_no_scores_claimed():
@@ -91,3 +98,40 @@ def test_no_scores_claimed():
                 f"{project['id']}: unverified claim {match.group(0)!r} "
                 f"in project copy"
             )
+
+
+@pytest.mark.parametrize("project", PROJECTS, ids=lambda p: p["id"])
+def test_outcome_shape(project):
+    outcome = project["outcome"]
+    if outcome is None:
+        return
+    assert set(outcome) == {"value", "metric", "context", "submissions"}, (
+        f"{project['id']}: outcome field mismatch"
+    )
+    assert isinstance(outcome["value"], str) and outcome["value"]
+    assert isinstance(outcome["metric"], str) and outcome["metric"]
+    assert isinstance(outcome["submissions"], int)
+    assert outcome["submissions"] >= 1, (
+        "an outcome must come from at least one completed submission"
+    )
+
+
+@pytest.mark.parametrize("project", PROJECTS, ids=lambda p: p["id"])
+def test_outcome_requires_a_competition(project):
+    """A leaderboard score cannot exist without a leaderboard."""
+    if project["outcome"] is not None:
+        assert project["competition"], (
+            f"{project['id']}: outcome claimed with no competition link to "
+            f"verify it against"
+        )
+
+
+@pytest.mark.parametrize("project", PROJECTS, ids=lambda p: p["id"])
+def test_single_submission_outcomes_say_so(project):
+    """One submission is a probe, not a result. The copy must admit it."""
+    outcome = project["outcome"]
+    if outcome and outcome["submissions"] == 1:
+        assert "first submission" in outcome["context"].lower(), (
+            f"{project['id']}: a single-submission score must be labelled "
+            f"as a first submission"
+        )

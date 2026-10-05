@@ -44,6 +44,16 @@ function projectCard(p) {
   parts.push("<h3>" + escapeHtml(p.title) + "</h3>");
   parts.push('<p class="problem">' + escapeHtml(p.problem) + "</p>");
 
+  if (p.outcome) {
+    parts.push(
+      '<p class="outcome"><span class="outcome-value">' +
+      escapeHtml(p.outcome.value) + "</span> " +
+      escapeHtml(p.outcome.metric) +
+      ' <span class="outcome-context">' +
+      escapeHtml(p.outcome.context) + "</span></p>"
+    );
+  }
+
   if (p.featured) {
     parts.push(bulletList(p.approach));
     if (p.constraint) {
