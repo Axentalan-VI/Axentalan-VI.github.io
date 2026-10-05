@@ -106,7 +106,7 @@
       "Gemma"
     ],
     "status": "in-progress",
-    "repo": "https://github.com/Axentalan-VI/gemma-4-developer-agent",
+    "repo": null,
     "competition": "https://www.kaggle.com/competitions/gemma-4-developer-agent",
     "outcome": {
       "value": "0.13",
@@ -135,7 +135,7 @@
       "Abstention"
     ],
     "status": "in-progress",
-    "repo": "https://github.com/Axentalan-VI/build-with-gemma-boston",
+    "repo": null,
     "competition": "https://www.kaggle.com/competitions/build-with-gemma-boston-capital-care",
     "outcome": null
   },
@@ -159,7 +159,7 @@
       "Search"
     ],
     "status": "in-progress",
-    "repo": "https://github.com/Axentalan-VI/ai-agent-security",
+    "repo": null,
     "competition": "https://www.kaggle.com/competitions/ai-agent-security-multi-step-tool-attacks",
     "outcome": {
       "value": "33.19",
@@ -312,7 +312,7 @@
       "Simulation"
     ],
     "status": "in-progress",
-    "repo": "https://github.com/Axentalan-VI/orbit-wars",
+    "repo": null,
     "competition": "https://www.kaggle.com/competitions/orbit-wars",
     "outcome": {
       "value": "636.1",

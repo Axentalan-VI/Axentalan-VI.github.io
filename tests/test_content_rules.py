@@ -79,7 +79,16 @@ def test_every_link_is_absolute_or_a_local_asset():
         )
 
 
-def test_cv_pdf_is_present():
-    pdf = SITE / "assets" / "Ahmed_Elfiky_AI_Engineer.pdf"
-    assert pdf.exists(), "CV PDF missing from assets/"
-    assert pdf.stat().st_size > 100_000, "CV PDF looks truncated"
+def test_no_pdf_is_published():
+    """No PDF ships until one exists without the owner's phone number.
+
+    The CV PDF was published and then withdrawn: its text layer carries the
+    phone number that the whole site is careful never to show. A PDF is opaque
+    to a text scan, so the rule is a blanket one - add a PDF back only together
+    with a check that reads its text.
+    """
+    pdfs = [p.name for p in (SITE / "assets").glob("*.pdf")]
+    assert not pdfs, (
+        f"PDF(s) in assets/: {pdfs}. Verify the text layer carries no phone "
+        f"number before republishing."
+    )
