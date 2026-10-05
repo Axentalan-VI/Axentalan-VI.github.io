@@ -112,7 +112,7 @@
     "tags": ["QLoRA", "PEFT/TRL", "vLLM", "Distillation", "4-bit"],
     "status": "in-progress",
     "repo": "https://github.com/Axentalan-VI/nemotron-reasoning",
-    "competition": "https://www.kaggle.com/competitions/nvidia-open-models"
+    "competition": "https://www.kaggle.com/competitions/nvidia-nemotron-model-reasoning-challenge"
   },
   {
     "id": "defence-rag",
