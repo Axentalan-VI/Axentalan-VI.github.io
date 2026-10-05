@@ -1,0 +1,77 @@
+{
+  "identity": {
+    "name": "Ahmed Elfiky",
+    "title": "AI Engineer",
+    "location": "Giza, Egypt",
+    "tagline": "Production agentic systems on Azure — and applied ML in open competition."
+  },
+  "links": [
+    { "label": "GitHub", "url": "https://github.com/Axentalan-VI" },
+    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/ahmed-sherif-b665331e79/" },
+    { "label": "Kaggle", "url": "https://www.kaggle.com/ahmedsherif382" },
+    { "label": "Email", "url": "mailto:ahmedsherif1589@gmail.com" },
+    { "label": "Download CV", "url": "assets/Ahmed_Elfiky_AI_Engineer.pdf" }
+  ],
+  "profile": "AI Engineer with production experience building agentic systems, LLM applications, and document intelligence. Designs multi-agent workflows on Azure AI Foundry around function calling, tool use, and MCP, and evaluates their output with LLM-as-a-judge before release. Outside of work, fine-tunes and serves open-source models with QLoRA and vLLM, and ships optimized inference under tight compute budgets.",
+  "experience": [
+    {
+      "organization": "Palm Hills Developments",
+      "role": "AI Engineer",
+      "dates": "Oct 2024 – Present",
+      "bullets": [
+        "Architected a three-agent decision-support system on Azure AI Foundry: a Microsoft Fabric data agent over Dataverse, a reasoning agent handling retrieval, calculation and prediction, and a formatting agent for delivery. The system is in active use by managers and VPs, including in board meetings, to support decision-making.",
+        "Equipped the agents with web search, a code interpreter, and function calling into a production gross-reservation forecasting model (145-feature LightGBM; 78.7% directional accuracy vs 70.8% naive-seasonal, 51.7% majority-class), with LLM-as-a-judge evaluation over outputs.",
+        "Built production document-intelligence pipelines processing 7,000–10,000 contracts a month, combining multiple OCR engines with LLM validation, plus a QA review screen that reconciles extracted fields against Dataverse records, flags each mismatch beside its source page, and writes approved corrections back via the Dataverse API, improving data accuracy by 85%.",
+        "Designed and deployed LLM-powered conversational agents for sales assistance and executive reporting on Azure OpenAI and Chainlit, running code-interpreter analysis over CRM, cost and budget data.",
+        "Deployed an autonomous resume-screening agent that parses resumes, scores them against job descriptions, and ranks candidates to automate first-pass HR screening.",
+        "Led and mentored interns building forecasting models, integrating their outputs into production agent recommendations."
+      ]
+    },
+    {
+      "organization": "Arab Academy for Science & Technology",
+      "role": "Teaching Assistant (Part-time)",
+      "dates": "Sept 2024 – Jan 2026",
+      "bullets": [
+        "Taught Data Structures, Introduction to AI, and Advanced AI, covering classical machine learning through artificial neural networks, and mentored students through practical labs on responsible AI, system risk, and data quality."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "group": "Agentic AI & Orchestration",
+      "items": ["Multi-agent systems", "Function calling & tool use", "MCP", "LLM-as-a-judge", "Agent memory & planning", "Code interpreter & web search", "LangChain/LangGraph", "Microsoft AutoGen"]
+    },
+    {
+      "group": "LLMs & Model Serving",
+      "items": ["RAG", "Fine-tuning (LoRA/QLoRA)", "PEFT/TRL", "bitsandbytes", "Grounding & hallucination guardrails", "vLLM", "Hugging Face", "Azure OpenAI", "Llama, Qwen, Gemma-2, Nemotron"]
+    },
+    {
+      "group": "Machine Learning",
+      "items": ["ML pipelines & model deployment", "Time-series forecasting", "Regression & classification", "Ensemble methods", "Hyperparameter tuning", "Feature engineering", "Stratified k-fold & walk-forward validation", "LightGBM", "XGBoost"]
+    },
+    {
+      "group": "Cloud, Deployment & MLOps",
+      "items": ["Azure AI Foundry", "Azure ML", "Azure DevOps", "Microsoft Fabric", "Dataverse", "Docker", "REST APIs", "Chainlit"]
+    },
+    {
+      "group": "Deep Learning & Optimization",
+      "items": ["PyTorch", "TensorFlow", "CNNs", "Transformers", "Object detection", "TTA & ensembling", "OpenCV", "INT8/4-bit quantization", "ONNX"]
+    },
+    {
+      "group": "Programming",
+      "items": ["Python", "C/C++", "Java", "JavaScript", "SQL"]
+    }
+  ],
+  "education": {
+    "degree": "B.Sc. Computer Science",
+    "institution": "Arab Academy for Science & Technology",
+    "dates": "Sept 2020 – Jul 2024",
+    "detail": "GPA 3.8 / 4.0 · Ranked 4th"
+  },
+  "certifications": [
+    "Microsoft Certified: Azure AI Apps and Agents Developer Associate, 2027",
+    "The Complete Agentic AI Engineering — Udemy",
+    "Generative AI Engineering with LLMs — Coursera",
+    "Deep Learning Specialization — Coursera"
+  ]
+}
