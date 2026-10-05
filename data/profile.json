@@ -6,11 +6,22 @@
     "tagline": "Production agentic systems on Azure — and applied ML in open competition."
   },
   "links": [
-    { "label": "GitHub", "url": "https://github.com/Axentalan-VI" },
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/in/ahmed-sherif-b665331e79/" },
-    { "label": "Kaggle", "url": "https://www.kaggle.com/ahmedsherif382" },
-    { "label": "Email", "url": "mailto:ahmedsherif1589@gmail.com" },
-    { "label": "Download CV", "url": "assets/Ahmed_Elfiky_AI_Engineer.pdf" }
+    {
+      "label": "GitHub",
+      "url": "https://github.com/Axentalan-VI"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/ahmed-sherif-b665331e79/"
+    },
+    {
+      "label": "Kaggle",
+      "url": "https://www.kaggle.com/ahmedsherif382"
+    },
+    {
+      "label": "Email",
+      "url": "mailto:ahmedsherif1589@gmail.com"
+    }
   ],
   "profile": "AI Engineer with production experience building agentic systems, LLM applications, and document intelligence. Designs multi-agent workflows on Azure AI Foundry around function calling, tool use, and MCP, and evaluates their output with LLM-as-a-judge before release. Outside of work, fine-tunes and serves open-source models with QLoRA and vLLM, and ships optimized inference under tight compute budgets.",
   "experience": [
@@ -39,27 +50,81 @@
   "skills": [
     {
       "group": "Agentic AI & Orchestration",
-      "items": ["Multi-agent systems", "Function calling & tool use", "MCP", "LLM-as-a-judge", "Agent memory & planning", "Code interpreter & web search", "LangChain/LangGraph", "Microsoft AutoGen"]
+      "items": [
+        "Multi-agent systems",
+        "Function calling & tool use",
+        "MCP",
+        "LLM-as-a-judge",
+        "Agent memory & planning",
+        "Code interpreter & web search",
+        "LangChain/LangGraph",
+        "Microsoft AutoGen"
+      ]
     },
     {
       "group": "LLMs & Model Serving",
-      "items": ["RAG", "Fine-tuning (LoRA/QLoRA)", "PEFT/TRL", "bitsandbytes", "Grounding & hallucination guardrails", "vLLM", "Hugging Face", "Azure OpenAI", "Llama, Qwen, Gemma-2, Nemotron"]
+      "items": [
+        "RAG",
+        "Fine-tuning (LoRA/QLoRA)",
+        "PEFT/TRL",
+        "bitsandbytes",
+        "Grounding & hallucination guardrails",
+        "vLLM",
+        "Hugging Face",
+        "Azure OpenAI",
+        "Llama, Qwen, Gemma-2, Nemotron"
+      ]
     },
     {
       "group": "Machine Learning",
-      "items": ["ML pipelines & model deployment", "Time-series forecasting", "Regression & classification", "Ensemble methods", "Hyperparameter tuning", "Feature engineering", "Stratified k-fold & walk-forward validation", "LightGBM", "XGBoost"]
+      "items": [
+        "ML pipelines & model deployment",
+        "Time-series forecasting",
+        "Regression & classification",
+        "Ensemble methods",
+        "Hyperparameter tuning",
+        "Feature engineering",
+        "Stratified k-fold & walk-forward validation",
+        "LightGBM",
+        "XGBoost"
+      ]
     },
     {
       "group": "Cloud, Deployment & MLOps",
-      "items": ["Azure AI Foundry", "Azure ML", "Azure DevOps", "Microsoft Fabric", "Dataverse", "Docker", "REST APIs", "Chainlit"]
+      "items": [
+        "Azure AI Foundry",
+        "Azure ML",
+        "Azure DevOps",
+        "Microsoft Fabric",
+        "Dataverse",
+        "Docker",
+        "REST APIs",
+        "Chainlit"
+      ]
     },
     {
       "group": "Deep Learning & Optimization",
-      "items": ["PyTorch", "TensorFlow", "CNNs", "Transformers", "Object detection", "TTA & ensembling", "OpenCV", "INT8/4-bit quantization", "ONNX"]
+      "items": [
+        "PyTorch",
+        "TensorFlow",
+        "CNNs",
+        "Transformers",
+        "Object detection",
+        "TTA & ensembling",
+        "OpenCV",
+        "INT8/4-bit quantization",
+        "ONNX"
+      ]
     },
     {
       "group": "Programming",
-      "items": ["Python", "C/C++", "Java", "JavaScript", "SQL"]
+      "items": [
+        "Python",
+        "C/C++",
+        "Java",
+        "JavaScript",
+        "SQL"
+      ]
     }
   ],
   "education": {
