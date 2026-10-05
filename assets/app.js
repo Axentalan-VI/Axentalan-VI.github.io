@@ -13,10 +13,15 @@ function escapeHtml(value) {
 
 /* Returns an anchor, or an empty string when there is no URL.
    A null repo or competition must leave no trace in the markup. */
-function linkOrNothing(url, label) {
+function linkOrNothing(url, label, context) {
   if (!url) return "";
-  return '<a href="' + escapeHtml(url) + '" rel="noopener">' +
-         escapeHtml(label) + "</a>";
+  // target=_blank keeps the portfolio open behind the repo the reader opened;
+  // rel=noopener is what makes that safe, and is meaningless without it.
+  // The label is repeated for every card, so give screen readers the context.
+  var aria = context ? ' aria-label="' + escapeHtml(label + " - " + context) +
+             '"' : "";
+  return '<a href="' + escapeHtml(url) + '" target="_blank" rel="noopener"' +
+         aria + ">" + escapeHtml(label) + "</a>";
 }
 
 function tagList(tags) {
@@ -65,8 +70,8 @@ function projectCard(p) {
   parts.push(tagList(p.tags));
 
   var foot = [
-    linkOrNothing(p.repo, "Code"),
-    linkOrNothing(p.competition, "Competition"),
+    linkOrNothing(p.repo, "Code", p.title),
+    linkOrNothing(p.competition, "Competition", p.title),
     '<span class="badge">' + escapeHtml(STATUS_LABEL[p.status] || p.status) +
       "</span>"
   ].filter(Boolean).join("");
@@ -81,7 +86,9 @@ function projectCard(p) {
 function renderProfile(profile) {
   document.getElementById("link-row").innerHTML = profile.links
     .map(function (item) {
-      return '<a href="' + escapeHtml(item.url) + '" rel="noopener">' +
+      var external = item.url.indexOf("http") === 0;
+      return '<a href="' + escapeHtml(item.url) + '"' +
+             (external ? ' target="_blank" rel="noopener"' : "") + ">" +
              escapeHtml(item.label) + "</a>";
     }).join("");
 
@@ -142,32 +149,59 @@ function wireFilter() {
   });
 }
 
+/* Fill any mount still empty with a pointer to the GitHub profile.
+
+   This covers every mount, not just the project grids: a failure inside
+   renderProfile would otherwise leave the experience section - the strongest
+   thing on the page - as a bare heading with no explanation, while the
+   projects showed a "could not be loaded" message that was not even true. */
 function showFallback() {
-  var message = '<p class="error">Project details could not be loaded. ' +
+  var message = '<p class="error">This section could not be loaded. ' +
     'All of this work is on <a href="https://github.com/Axentalan-VI" ' +
     'rel="noopener">github.com/Axentalan-VI</a>.</p>';
-  ["featured", "compact"].forEach(function (id) {
+  ["link-row", "profile-text", "experience", "featured", "compact",
+   "skills", "education", "certifications"].forEach(function (id) {
     var node = document.getElementById(id);
-    if (node && !node.innerHTML.trim()) node.innerHTML = message;
+    if (node && !node.innerHTML.trim() && !node.textContent.trim()) {
+      node.innerHTML = message;
+    }
   });
 }
 
 async function init() {
+  var profile = null;
+  var projects = null;
+
   try {
     const [profileResponse, projectsResponse] = await Promise.all([
       fetch("data/profile.json"),
       fetch("data/projects.json")
     ]);
-    if (!profileResponse.ok || !projectsResponse.ok) {
-      throw new Error("failed to load site data");
-    }
-    renderProfile(await profileResponse.json());
-    renderProjects(await projectsResponse.json());
-    wireFilter();
+    if (profileResponse.ok) profile = await profileResponse.json();
+    if (projectsResponse.ok) projects = await projectsResponse.json();
   } catch (error) {
     console.error(error);
-    showFallback();
   }
+
+  /* Render each half independently, so one bad file cannot blank the other
+     and so wireFilter still runs when the projects themselves are fine. */
+  if (profile) {
+    try {
+      renderProfile(profile);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  if (projects) {
+    try {
+      renderProjects(projects);
+      wireFilter();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  showFallback();
 }
 
 init();

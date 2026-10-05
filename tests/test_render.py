@@ -26,10 +26,24 @@ def test_escape_helper_exists_and_covers_all_entities():
 
 
 def test_all_interpolated_values_are_escaped():
-    """No raw JSON value may reach innerHTML unescaped."""
-    raw = re.findall(r"\$\{\s*(?!escapeHtml|linkOrNothing|tagList|bulletList)"
-                     r"(p|item|entry|group)\.\w+", APP)
-    assert not raw, f"unescaped interpolations into markup: {raw}"
+    """No raw JSON value may reach innerHTML unescaped.
+
+    app.js builds markup by concatenation, not template literals, so the risk
+    is `"<h3>" + p.title` rather than `${p.title}`. Catch both: a data property
+    adjacent to a string literal across a `+` is a value going into markup
+    without passing through escapeHtml.
+    """
+    names = r"(?:p|item|entry|group|edu|outcome)"
+    offenders = []
+    # "<tag>" + p.prop
+    offenders += re.findall(r"""["']\s*\+\s*(""" + names + r"\.\w+)", APP)
+    # p.prop + "</tag>"
+    offenders += re.findall(r"(" + names + r"""\.\w+)\s*\+\s*["']""", APP)
+    # ${p.prop}, should template literals ever be introduced
+    offenders += re.findall(r'\$\{\s*(' + names + r'\.\w+)', APP)
+    assert not offenders, (
+        f"values concatenated into markup without escapeHtml: {offenders}"
+    )
 
 
 def test_fetch_failure_renders_fallback():
