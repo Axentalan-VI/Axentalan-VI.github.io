@@ -1,0 +1,195 @@
+[
+  {
+    "id": "birdclef-2026",
+    "title": "BirdCLEF+ 2026",
+    "track": "ml",
+    "featured": true,
+    "problem": "Identify which of 234 bird, amphibian, mammal and insect species are vocalizing in 5-second windows of unlabeled tropical soundscape recordings.",
+    "approach": [
+      "EfficientNet classifier over log-mel spectrograms, 46k recordings, OGG decoded to mel on the fly",
+      "Two complementary models ensembled at submission time to bridge the focal-to-soundscape domain gap",
+      "Training data is single-species and weakly labeled; the hidden test set is multi-species soundscapes"
+    ],
+    "constraint": "CPU-only, no internet, under 90 minutes — deployed as INT8 ONNX",
+    "tags": ["PyTorch", "Audio", "EfficientNet", "ONNX", "Quantization"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/birdclef-plus-2026",
+    "competition": "https://www.kaggle.com/competitions/birdclef-2026"
+  },
+  {
+    "id": "amia-2026",
+    "title": "AMIA Public Challenge 2026",
+    "track": "ml",
+    "featured": true,
+    "problem": "Detect 14 thoracic findings in chest radiographs where each image is annotated independently by several radiologists who disagree.",
+    "approach": [
+      "Weighted Box Fusion across radiologists at IoU 0.4, treating each as a separate model so the fused score encodes agreement",
+      "5-fold MultilabelStratifiedKFold over the 14-class multi-hot vector, fixed seed for identical splits across runs",
+      "Detector gated by a normal/abnormal classifier, then multi-scale TTA and WBF over 10 result sets per image"
+    ],
+    "constraint": "No horizontal flip — PA-view laterality is diagnostic for Cardiomegaly and Aortic enlargement",
+    "tags": ["Object detection", "YOLO", "Medical imaging", "WBF", "Ensembling"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/amia-public-challenge-2026",
+    "competition": "https://www.kaggle.com/competitions/amia-public-challenge-2026"
+  },
+  {
+    "id": "motion-s",
+    "title": "Motion-S: Text-to-Sign Motion Generation",
+    "track": "ml",
+    "featured": true,
+    "problem": "Map English text and gloss into a 6-layer RVQ token grid that decodes into sign-language motion through a frozen organizer-provided RVQ-VAE.",
+    "approach": [
+      "DistilBERT length predictor assigns one of 32 duration bins before any token is generated",
+      "MoMask masked transformer ensembled with T2M-GPT under classifier-free guidance",
+      "Frozen RVQ tokenizer with 6 layers and a 512-entry codebook, used only for encode and decode"
+    ],
+    "constraint": "The RVQ-VAE checkpoint is fixed, so generation must land in exactly its token space",
+    "tags": ["PyTorch", "Transformers", "RVQ", "DistilBERT", "Generative"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/Motion-S-Text-to-Sign-Motion-Generation-Signvrse",
+    "competition": "https://www.kaggle.com/competitions/motion-s-hierarchical-text-to-motion-generation-for-sign-language"
+  },
+  {
+    "id": "gemma-4-agent",
+    "title": "Gemma 4 Developer Agent",
+    "track": "agents",
+    "featured": true,
+    "problem": "Resolve SWE-bench-style software issues with a purely declarative Google ADK agent — YAML and prompts, no Python entrypoint.",
+    "approach": [
+      "Identified context, not the time budget, as the binding constraint: a 32k window with compaction forgets its own reproduction output by roughly turn seven",
+      "Spends the budget across many short disposable contexts rather than one long trajectory, which drives the orchestrator topology",
+      "Submission is a declarative config bundle scored by the host harness on resolution rate"
+    ],
+    "constraint": "Declarative config only — no Python entrypoints; 60 minutes and 100 tool calls per task",
+    "tags": ["Google ADK", "Agents", "SWE-bench", "Orchestration", "Gemma"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/gemma-4-developer-agent",
+    "competition": "https://www.kaggle.com/competitions/gemma-4-developer-agent"
+  },
+  {
+    "id": "covered-rag",
+    "title": "Covered — Grounded Coverage Navigator",
+    "track": "agents",
+    "featured": true,
+    "problem": "Answer real health-coverage questions from public government documents, where answering wrongly is worse than not answering at all.",
+    "approach": [
+      "Every claim must trace to a retrieved span of a source document, with the citation carried through to the answer",
+      "Abstains outright when the retrieved evidence does not support an answer",
+      "Multi-hop by design: identify the program, find the eligibility rule, compute an income threshold against the Federal Poverty Level, then check the service"
+    ],
+    "constraint": "No ungrounded claims — the system must refuse rather than guess",
+    "tags": ["RAG", "Gemma 4", "Retrieval", "Citations", "Abstention"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/build-with-gemma-boston",
+    "competition": "https://www.kaggle.com/competitions/build-with-gemma-boston-capital-care"
+  },
+  {
+    "id": "jed-attack",
+    "title": "JED Attack — AI Agent Security",
+    "track": "agents",
+    "featured": true,
+    "problem": "Red-team tool-using LLM agents by searching for multi-step attacks that defeat a guardrail, for an OpenAI, Google and IEEE challenge.",
+    "approach": [
+      "Found an asymmetry in the defense: the guardrail blocks on substring matching, but the scorer decodes base64, hex and URL encoding before matching",
+      "An encoded exfiltration call therefore passes the DLP filter while still firing at maximum severity",
+      "Search loop maintains a cell archive, since the objective rewards distinct high-severity attack variants rather than a single working one"
+    ],
+    "constraint": "Attacks must survive both a public and an unseen private guardrail",
+    "tags": ["AI security", "Red teaming", "Guardrails", "Agents", "Search"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/ai-agent-security",
+    "competition": "https://www.kaggle.com/competitions/ai-agent-security-multi-step-tool-attacks"
+  },
+  {
+    "id": "nemotron-reasoning",
+    "title": "NVIDIA Nemotron Reasoning",
+    "track": "agents",
+    "featured": false,
+    "problem": "Fine-tune a 30B reasoning model with a rank-32 LoRA adapter on teacher-distilled chain-of-thought traces, submitting the adapter rather than a model.",
+    "approach": [],
+    "constraint": "QLoRA on a single H100; adapter must load into vLLM at max_lora_rank 32",
+    "tags": ["QLoRA", "PEFT/TRL", "vLLM", "Distillation", "4-bit"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/nemotron-reasoning",
+    "competition": "https://www.kaggle.com/competitions/nvidia-open-models"
+  },
+  {
+    "id": "defence-rag",
+    "title": "DefenceRAG",
+    "track": "agents",
+    "featured": false,
+    "problem": "Answer questions over Indian defence procurement and policy documents with the source document and section attributed for every answer.",
+    "approach": [],
+    "constraint": "Must return the source PDF and section bucket alongside each answer",
+    "tags": ["RAG", "BM25", "EmbeddingGemma", "Hybrid retrieval"],
+    "status": "submitted",
+    "repo": "https://github.com/Axentalan-VI/DefenceRAG",
+    "competition": "https://www.kaggle.com/competitions/defence-rag-procurement-policy-reasoning-challenge-2026"
+  },
+  {
+    "id": "multi-agent-debate",
+    "title": "Multi-Agent Debate System",
+    "track": "agents",
+    "featured": false,
+    "problem": "Two AI debaters argue opposite sides of any topic and an impartial judge decides, with the judging engineered against its own biases.",
+    "approach": [],
+    "constraint": "Judge runs twice with A/B labels swapped; every decisive quote is verified in code",
+    "tags": ["LangGraph", "LLM-as-a-judge", "GPT-4o", "Azure OpenAI"],
+    "status": "completed",
+    "repo": "https://github.com/Axentalan-VI/Multi-Agent-Debate-System",
+    "competition": null
+  },
+  {
+    "id": "competitive-analysis",
+    "title": "Competitive Analysis Agent",
+    "track": "agents",
+    "featured": false,
+    "problem": "Identify a company's competitors, research each one, and write a strategic competitive report with every finding cited to a search result.",
+    "approach": [],
+    "constraint": "Structured output validated in code, with one retry listing the specific problems",
+    "tags": ["LangGraph", "Tavily", "Parallel fan-out", "GPT-4o"],
+    "status": "completed",
+    "repo": null,
+    "competition": null
+  },
+  {
+    "id": "lmsys-preference",
+    "title": "LMSYS Chatbot Arena — Preference Prediction",
+    "track": "ml",
+    "featured": false,
+    "problem": "Predict which of two LLM responses a human will prefer, as a three-class problem including ties.",
+    "approach": [],
+    "constraint": null,
+    "tags": ["Transformers", "Fine-tuning", "Classification", "NLP"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/llm-classification-finetuning",
+    "competition": "https://www.kaggle.com/competitions/lmsys-chatbot-arena"
+  },
+  {
+    "id": "enveda-casmi",
+    "title": "Enveda CASMI 2026 — Molecule ID",
+    "track": "ml",
+    "featured": false,
+    "problem": "Predict a small molecule's 2D structure from its tandem mass spectra, submitting up to 25 ranked candidate structures.",
+    "approach": [],
+    "constraint": "Exact skeleton match on a tautomer-canonical key, so it is a retrieval and ranking problem rather than a generation one",
+    "tags": ["Retrieval", "Ranking", "Mass spectrometry", "Cheminformatics"],
+    "status": "in-progress",
+    "repo": null,
+    "competition": "https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra"
+  },
+  {
+    "id": "orbit-wars",
+    "title": "Orbit Wars",
+    "track": "ml",
+    "featured": false,
+    "problem": "Write a bot that launches fleets between rotating planets on a continuous board and holds the most ships after 500 turns.",
+    "approach": [],
+    "constraint": "One second of compute per turn",
+    "tags": ["Game AI", "Heuristics", "Simulation"],
+    "status": "in-progress",
+    "repo": "https://github.com/Axentalan-VI/orbit-wars",
+    "competition": "https://www.kaggle.com/competitions/orbit-wars"
+  }
+]
