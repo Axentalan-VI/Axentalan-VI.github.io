@@ -30,6 +30,10 @@ def competition_slug(url):
     return url.rstrip("/").rsplit("/", 1)[-1] if url else None
 
 
+class KaggleUnavailable(Exception):
+    """The Kaggle CLI could not be run at all."""
+
+
 def best_score(slug):
     """Return (best, completed_count) from the submission history."""
     try:
@@ -39,6 +43,11 @@ def best_score(slug):
         )
     except subprocess.TimeoutExpired:
         return None, "timeout"
+    except (FileNotFoundError, OSError) as error:
+        # Raised when the kaggle CLI is not on PATH. This script is run by hand
+        # from whatever shell is open, so this is the common failure, and a
+        # stack trace tells the reader nothing about how to fix it.
+        raise KaggleUnavailable(str(error)) from error
     if result.returncode != 0:
         return None, "error"
 
@@ -71,7 +80,23 @@ def main():
         if not slug:
             print(f"{project['id']:<22} {'(no comp)':>12} {'-':>6}  {on_site:>12}")
             continue
-        best, count = best_score(slug)
+        try:
+            best, count = best_score(slug)
+        except KaggleUnavailable as error:
+            print()
+            print("Could not run the Kaggle CLI, so no scores were fetched.")
+            print(f"  reason: {error}")
+            print()
+            print("The CLI is installed but may not be on this shell's PATH.")
+            print("On this machine it lives in E:\\miniconda\\Scripts, so run:")
+            print()
+            print('  KAGGLE_CONFIG_DIR=E:/Kaggle PYTHONUTF8=1 \\')
+            print('    PATH="/e/miniconda/Scripts:$PATH" \\')
+            print("    python scripts/fetch_scores.py")
+            print()
+            print("Credentials are read from kaggle.json in KAGGLE_CONFIG_DIR;")
+            print("do not pass the key on the command line.")
+            return 2
         shown = "-" if best is None else f"{best:g}"
         print(f"{project['id']:<22} {shown:>12} {str(count):>6}  {on_site:>12}")
     print("\nCompare 'best' against 'on site'; any drift means projects.json "
