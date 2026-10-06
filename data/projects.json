@@ -312,7 +312,7 @@
       "Simulation"
     ],
     "status": "in-progress",
-    "repo": null,
+    "repo": "https://github.com/Axentalan-VI/orbit-wars",
     "competition": "https://www.kaggle.com/competitions/orbit-wars",
     "outcome": {
       "value": "636.1",
