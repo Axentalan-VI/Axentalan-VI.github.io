@@ -256,25 +256,6 @@
     "outcome": null
   },
   {
-    "id": "lmsys-preference",
-    "title": "LMSYS Chatbot Arena — Preference Prediction",
-    "track": "ml",
-    "featured": false,
-    "problem": "Predict which of two LLM responses a human will prefer, as a three-class problem including ties.",
-    "approach": [],
-    "constraint": null,
-    "tags": [
-      "Transformers",
-      "Fine-tuning",
-      "Classification",
-      "NLP"
-    ],
-    "status": "completed",
-    "repo": "https://github.com/Axentalan-VI/llm-classification-finetuning",
-    "competition": "https://www.kaggle.com/competitions/lmsys-chatbot-arena",
-    "outcome": null
-  },
-  {
     "id": "enveda-casmi",
     "title": "Enveda CASMI 2026 — Molecule ID",
     "track": "ml",
