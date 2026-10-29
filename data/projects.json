@@ -106,13 +106,13 @@
       "Gemma"
     ],
     "status": "in-progress",
-    "repo": null,
+    "repo": "https://github.com/Axentalan-VI/gemma-4-developer-agent",
     "competition": "https://www.kaggle.com/competitions/gemma-4-developer-agent",
     "outcome": {
       "value": "0.13",
       "metric": "resolution rate",
-      "context": "first submission, rank 95 of 1901 teams; competition runs to December 2026",
-      "submissions": 1
+      "context": "rank 1402 of 3199 teams; paper track write-up submitted, deadline 2026-11-12",
+      "submissions": 4
     }
   },
   {
@@ -273,10 +273,10 @@
     "repo": null,
     "competition": "https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra",
     "outcome": {
-      "value": "0.185",
+      "value": "0.456",
       "metric": "MRR@25",
-      "context": "first submission; competition runs to December 2026",
-      "submissions": 1
+      "context": "rank ~1045 of 4232 teams; competition runs to 2026-12-14",
+      "submissions": 8
     }
   },
   {
