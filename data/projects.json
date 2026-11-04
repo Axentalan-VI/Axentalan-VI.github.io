@@ -111,7 +111,7 @@
     "outcome": {
       "value": "0.13",
       "metric": "resolution rate",
-      "context": "rank 1402 of 3199 teams; paper track write-up submitted, deadline 2026-11-12",
+      "context": "paper-track write-up submitted; main track runs to 2026-12-02",
       "submissions": 4
     }
   },
@@ -249,11 +249,35 @@
     "repo": null,
     "competition": "https://www.kaggle.com/competitions/enveda-CASMI26-molecule-id-mass-spectra",
     "outcome": {
-      "value": "0.456",
+      "value": "0.480",
       "metric": "MRR@25",
-      "context": "rank ~1045 of 4232 teams; competition runs to 2026-12-14",
-      "submissions": 8
+      "context": "best of 10 submissions; competition runs to 2026-12-14",
+      "submissions": 10
     }
+  },
+  {
+    "id": "crm-salesforce-migration",
+    "title": "CRM to Salesforce Migration Pipeline",
+    "track": "data",
+    "featured": true,
+    "problem": "Migrate a live enterprise CRM onto Salesforce, where the two systems disagree on schema, field semantics and record granularity, and nothing may be silently dropped in transit.",
+    "approach": [
+      "Extraction through the Dynamics 365 Web API under OAuth2 client credentials, then staged in a Microsoft Fabric Lakehouse as Delta tables read with Spark",
+      "Declarative source-to-target field mapping onto Salesforce objects, with business-rule transformations applied in pandas rather than by hand",
+      "Source-to-target reconciliation before load, so a record count that does not balance fails the run instead of landing a partial migration"
+    ],
+    "constraint": "Target-side field constraints and record-level validation must hold before load, not after",
+    "tags": [
+      "ETL",
+      "Dynamics 365",
+      "Salesforce",
+      "Microsoft Fabric",
+      "PySpark"
+    ],
+    "status": "completed",
+    "repo": null,
+    "competition": null,
+    "outcome": null
   },
   {
     "id": "orbit-wars",
