@@ -34,7 +34,7 @@
         "Equipped the agents with web search, a code interpreter, and function calling into a production gross-reservation forecasting model (145-feature LightGBM; 78.7% directional accuracy vs 70.8% naive-seasonal, 51.7% majority-class), with LLM-as-a-judge evaluation over outputs.",
         "Built production document-intelligence pipelines processing 7,000–10,000 contracts a month, combining multiple OCR engines with LLM validation, plus a QA review screen that reconciles extracted fields against Dataverse records, flags each mismatch beside its source page, and writes approved corrections back via the Dataverse API, improving data accuracy by 85%.",
         "Designed and deployed LLM-powered conversational agents for sales assistance and executive reporting on Azure OpenAI and Chainlit, running code-interpreter analysis over CRM, cost and budget data.",
-        "Deployed an autonomous resume-screening agent that parses resumes, scores them against job descriptions, and ranks candidates to automate first-pass HR screening.",
+        "Built a Dynamics 365 to Salesforce CRM migration pipeline on the Dynamics Web API and Microsoft Fabric Lakehouse, with Salesforce field mapping, business-rule transformations, and source-to-target reconciliation.",
         "Led and mentored interns building forecasting models, integrating their outputs into production agent recommendations."
       ]
     },
@@ -103,6 +103,17 @@
       ]
     },
     {
+      "group": "Data Engineering",
+      "items": [
+        "ETL & data migration",
+        "PySpark",
+        "Delta Lake",
+        "Dynamics 365 Web API",
+        "Salesforce data loading",
+        "Source-to-target reconciliation"
+      ]
+    },
+    {
       "group": "Deep Learning & Optimization",
       "items": [
         "PyTorch",
@@ -134,7 +145,6 @@
     "detail": "GPA 3.8 / 4.0 · Ranked 4th"
   },
   "certifications": [
-    "Microsoft Certified: Azure AI Apps and Agents Developer Associate, 2027",
     "The Complete Agentic AI Engineering — Udemy",
     "Generative AI Engineering with LLMs — Coursera",
     "Deep Learning Specialization — Coursera"
