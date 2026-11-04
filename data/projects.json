@@ -260,19 +260,21 @@
     "title": "CRM to Salesforce Migration Pipeline",
     "track": "data",
     "featured": true,
-    "problem": "Migrate a live enterprise CRM onto Salesforce, where the two systems disagree on schema, field semantics and record granularity, and nothing may be silently dropped in transit.",
+    "problem": "Migrate a live enterprise CRM onto Salesforce, where the two systems disagree on schema, field semantics and record granularity, and relationships between records have to survive the move intact.",
     "approach": [
-      "Extraction through the Dynamics 365 Web API under OAuth2 client credentials, then staged in a Microsoft Fabric Lakehouse as Delta tables read with Spark",
-      "Declarative source-to-target field mapping onto Salesforce objects, with business-rule transformations applied in pandas rather than by hand",
-      "Source-to-target reconciliation before load, so a record count that does not balance fails the run instead of landing a partial migration"
+      "Source tables land in a Microsoft Fabric Lakehouse as Delta tables, read with Spark and transformed in pandas, with staged results written back as Lakehouse tables rather than loose files",
+      "Covers the whole opportunity-to-contract lifecycle — opportunities, reservations, contracts, payment plans, pricing structures and installments — alongside accounts, contacts and inventory",
+      "Reconciles two generations of CRM identifiers, falling back to the legacy key when the current one is absent, so foreign-key relationships still resolve on the Salesforce side through external-ID fields",
+      "Normalises timestamps to a single timezone, conforms names and fields to target-side limits, and batches exports under the loader's file-size ceiling"
     ],
-    "constraint": "Target-side field constraints and record-level validation must hold before load, not after",
+    "constraint": "Relationships must resolve through Salesforce external IDs, and records must reconcile before load rather than after",
     "tags": [
       "ETL",
       "Dynamics 365",
       "Salesforce",
       "Microsoft Fabric",
-      "PySpark"
+      "PySpark",
+      "Delta Lake"
     ],
     "status": "completed",
     "repo": null,
