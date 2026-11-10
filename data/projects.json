@@ -251,8 +251,8 @@
     "outcome": {
       "value": "0.480",
       "metric": "MRR@25",
-      "context": "best of 10 submissions; competition runs to 2026-12-14",
-      "submissions": 10
+      "context": "best of 11 submissions; competition runs to 2026-12-14",
+      "submissions": 11
     }
   },
   {
