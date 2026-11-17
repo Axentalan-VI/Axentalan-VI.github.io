@@ -30,7 +30,7 @@
       "role": "AI Engineer",
       "dates": "Oct 2024 – Present",
       "bullets": [
-        "Architected a three-agent decision-support system on Azure AI Foundry: a Microsoft Fabric data agent over Dataverse, a reasoning agent handling retrieval, calculation and prediction, and a formatting agent for delivery. The system is in active use by managers and VPs, including in board meetings, to support decision-making.",
+        "Architected a three-agent decision-support system on Azure AI Foundry: a Microsoft Fabric data agent over Dataverse, a reasoning agent handling retrieval, calculation and prediction, and a formatting agent for delivery.",
         "Equipped the agents with web search, a code interpreter, and function calling into a production gross-reservation forecasting model (145-feature LightGBM; 78.7% directional accuracy vs 70.8% naive-seasonal, 51.7% majority-class), with LLM-as-a-judge evaluation over outputs.",
         "Built production document-intelligence pipelines processing 7,000–10,000 contracts a month, combining multiple OCR engines with LLM validation, plus a QA review screen that reconciles extracted fields against Dataverse records, flags each mismatch beside its source page, and writes approved corrections back via the Dataverse API, improving data accuracy by 85%.",
         "Designed and deployed LLM-powered conversational agents for sales assistance and executive reporting on Azure OpenAI and Chainlit, running code-interpreter analysis over CRM, cost and budget data.",
